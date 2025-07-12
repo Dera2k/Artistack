@@ -9,8 +9,11 @@ Route::get('/', function () {
     return ('welcome');
 });
 
+// log in page route
+ROute::get("/", );
+
 // home page route
-Route::get("/", [HomeController::class, 'index'])->name('home');
+Route::get("/home", [HomeController::class, 'index'])->name('home');
 
 // artwork illustrations page route
 Route::get("/artworks", [ArtworkController::class, 'index'])->name('artworks');
