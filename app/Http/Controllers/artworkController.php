@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class artworkController extends Controller
 {
     public function index(){
-        return view('artworks');
+        return view('pages.artworks');
     }
 }
