@@ -18,6 +18,3 @@ Route::get("/home", [HomeController::class, 'index'])->name('home');
 
 // artwork illustrations page route
 Route::get("/artworks", [ArtworkController::class, 'index'])->name('artworks');
-
-// about page route
-Route::get("/about", [AboutController::class, 'index'])->name('about');
