@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\artworkController;
-use App\Http\Controllers\aboutController;
 use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
@@ -17,4 +16,4 @@ ROute::get("/", [LoginController::class, 'index'])->name('login');
 Route::get("/home", [HomeController::class, 'index'])->name('home');
 
 // artwork illustrations page route
-Route::get("/artworks", [ArtworkController::class, 'index'])->name('artworks');
+Route::resource("/artworks", ArtworkController::class,);
