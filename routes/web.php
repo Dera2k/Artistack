@@ -10,7 +10,7 @@ Route::get('/', function () {
 });
 
 // log in page route
-ROute::get("/", [LoginController::class, 'index'])->name('login');
+Route::get("/", [LoginController::class, 'index'])->name('login');
 
 // home page route
 Route::get("/home", [HomeController::class, 'index'])->name('home');

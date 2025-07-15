@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Artwork;
 
 class ArtworkController extends Controller
 {
@@ -10,8 +11,9 @@ class ArtworkController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('pages.artworks');
+    {   
+        $artworks = Artwork::all();
+        return view('pages.artworks', compact('artworks'));
     }
 
     /**
@@ -19,7 +21,7 @@ class ArtworkController extends Controller
      */
     public function create()
     {
-        //
+        return view("pages.create");
     }
 
     /**
