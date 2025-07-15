@@ -7,7 +7,7 @@
             pt-20: top padding (5rem)
         -->
 
-        <h1 class="text-2xl font-bold mb-6 text-center text-white">
+        <h1 class="text-2xl font-bold mb-6 text-center text-black">
             My Artworks
         </h1>
         <!-- 
@@ -52,7 +52,18 @@
                         </p>
                     </div>
                 </div>
+                
 
+                <!-- Card 3 -->
+                <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                    <img src="{{ asset('images/art.jpg') }}" alt="Artwork 3" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h2 class="text-lg font-semibold mb-2">Sunset Canvas</h2>
+                        <p class="text-gray-600 text-sm">
+                            A calming blend of warm colors inspired by the evening sky.
+                        </p>
+                    </div>
+                </div>
                 <!-- Add more cards here if needed -->
 
             </div>

@@ -10,7 +10,7 @@
 <body class="bg-gray-200 min-h-screen">
     <x-header />
 
-    <main class=" bg-gray-700 w-full flex-grow min-[80vh]: mx-auto px-4">
+    <main class="w-full flex-grow min-[80vh]: mx-auto px-4">
         {{$slot}} <!-- main content here -->
     </main>
 
