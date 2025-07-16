@@ -1,5 +1,4 @@
-<header class="bg-blue-700 border-10 border-black-900 w-full z-50
-">
+<header class="bg-blue-700 border-10 border-black-900 w-full z-50">
     <div class="mx-auto flex justify-between py-4 px-5">
         <a href="{{ route('home') }}" class="text-white font-bold text-lg">Artistack</a>
         <nav>
