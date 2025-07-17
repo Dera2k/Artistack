@@ -7,12 +7,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body class="bg-gray-200 min-h-screen">
+<body class="bg-gray-200 ">
     <x-header />
-
-    <main class="w-full flex-grow min-[80vh]: mx-auto px-4">
-        {{$slot}} <!-- main content here -->
-    </main>
+        <div class="flex">
+        <main class="w-full flex-grow min-h-[80vh]: mx-auto py-8">
+            {{$slot}} <!-- main content here -->
+        </main>
+    </div>
 
     <x-footer />
 </body>

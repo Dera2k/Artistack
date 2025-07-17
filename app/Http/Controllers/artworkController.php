@@ -13,7 +13,7 @@ class ArtworkController extends Controller
     public function index()
     {   
         $artworks = Artwork::all();
-        return view('pages.artworks', compact('artworks'));
+        return view('pages.artworks')->with('artworks', $artworks);
     }
     /**
      * Show the form for creating a new resource.
@@ -30,14 +30,15 @@ class ArtworkController extends Controller
     {
         // get the database stuff and store them in variables and validate
         $validated_data = $request->validate([
-            'image_path' => 'required|image|max:2048',
+            // 'image_path' => 'required|image|max:2048',
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:255',
         ]);
 
-        $path = $request ->file('image')->store("artworks", "public");
+        // $path = $request ->file('image')->store("artworks", "public");
         Artwork::create([
-            "image_path" => $path,
+            // "image_path" => $path,
+            "image_path" => 'placeholder.jpg',
             "title" => $validated_data['title'],
             "description" => $validated_data['description'],
         ]);
