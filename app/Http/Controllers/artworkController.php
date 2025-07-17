@@ -15,7 +15,6 @@ class ArtworkController extends Controller
         $artworks = Artwork::all();
         return view('pages.artworks', compact('artworks'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -37,14 +36,12 @@ class ArtworkController extends Controller
         ]);
 
         $path = $request ->file('image')->store("artworks", "public");
-
         Artwork::create([
             "image_path" => $path,
             "title" => $validated_data['title'],
             "description" => $validated_data['description'],
         ]);
         return redirect()->route('artworks.index')->with('success', 'Artwork uploaded!');
-
     }
 
     /**
