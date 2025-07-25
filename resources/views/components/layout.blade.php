@@ -9,9 +9,8 @@
 
 <body class="bg-gray-200 ">
     <x-header />
-    <div class="flex">
-        <main class="w-full flex-grow min-h-[80vh]: mx-auto py-8">
-            {{$slot}} <!-- main content here -->
+        <main class="container mx-auto p-4 mt-4">
+            {{$slot}}
         </main>
     </div>
 
