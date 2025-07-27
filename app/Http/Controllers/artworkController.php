@@ -28,17 +28,15 @@ class ArtworkController extends Controller
      */
     public function store(Request $request)
     {
-        // get the database stuff and store them in variables and validate
         $validated_data = $request->validate([
-            // 'image_path' => 'required|image|max:2048',
+            'image_path' => 'required|image|max:2048',
             'title' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string|max:2000',
         ]);
 
-        // $path = $request ->file('image')->store("artworks", "public");
+        $path = $request ->file('image')->store("artworks", "public");
         Artwork::create([
-            // "image_path" => $path,
-            "image_path" => 'placeholder.jpg',
+            "image_path" => $path,
             "title" => $validated_data['title'],
             "description" => $validated_data['description'],
         ]);
