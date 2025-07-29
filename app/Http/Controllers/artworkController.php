@@ -29,7 +29,7 @@ class ArtworkController extends Controller
     public function store(Request $request)
     {
         $validated_data = $request->validate([
-            'image_path' => 'required|image|max:2048',
+            'image' => 'required|image|max:2048',
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:2000',
         ]);
