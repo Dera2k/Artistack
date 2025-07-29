@@ -21,11 +21,11 @@
             </div>
 
             <div>
-                <label for="description">Description:</label>
+                <label for="description">Description:</label><br>
                 <input type="text" name="desription"> 
             </div>
 
-            <div>
+            <div><br>
                 <button type="submit" class=" text-red-300 rounded-lg bg-blue-500 justify-center">Upload</button>
             </div>
         </form>

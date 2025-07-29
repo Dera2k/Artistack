@@ -9,11 +9,11 @@
 
 <body class="bg-gray-200 ">
     <x-header />
+
         <main class="container mx-auto p-4 mt-4">
             {{$slot}}
         </main>
-    </div>
-
+        
     <x-footer />
 </body>
 
