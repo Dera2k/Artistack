@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artwork;
+use Illuminate\Support\Facades\Storage;
 
 class ArtworkController extends Controller
 {
@@ -48,7 +49,8 @@ class ArtworkController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $artwork = Artwork::findOrFail($id);
+        return view('pages.show', compact('artwork'));
     }
 
     /**
@@ -72,6 +74,13 @@ class ArtworkController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $artwork = Artwork::findOrFail($id);
+
+        if($artwork->image_path && \Storage::disk('public')->exists($artwork->image_path)){
+            \Storage::disk('public')->delete($artwork->image_path);
+        }
+
+        $artwork->delete();
+        return redirect()->back()->with('success', 'Artwork deleted successfully');
     }
 }
