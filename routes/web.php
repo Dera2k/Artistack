@@ -7,11 +7,5 @@ use App\Http\Controllers\artworkController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// log in page route
-// Route::get("/", [LoginController::class, 'index'])->name('login');
-
-// home page route
-// Route::get("/home", [HomeController::class, 'index'])->name('home');
-
 // artwork illustrations page route
-Route::resource("/artworks", ArtworkController::class);
+Route::resource("artworks", ArtworkController::class);
