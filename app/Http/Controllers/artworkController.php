@@ -58,7 +58,8 @@ class ArtworkController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $artwork = Artwork::fineorFail($id);
+        return view('pages.edit', compact('artwork'));
     }
 
     /**
@@ -66,7 +67,20 @@ class ArtworkController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $artwork = Artwork::findorFail($id);
+        $artwork -> update([
+            'title' => $request->input('title', $artwork->title),
+            'description' => $request->input('description', $artwork->description),
+        ]);
+
+        return redirect()->route('pages.show', $artwork->id)->with('success', 'Artwork updated successfully');
+
+
     }
 
     /**

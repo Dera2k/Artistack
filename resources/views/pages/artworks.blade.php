@@ -12,7 +12,7 @@
             $grid_classes = 'grid gap-8 max-w-5xl mx-auto';
             if ($count ===1)
             {
-                $grid_classes .= ' grid-cols-1 place-content-center'; 
+                $grid_classes .= ' grid-cols-1 place-content-center';
             }
             elseif ($count ===2)
             {
