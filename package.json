@@ -7,7 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "dev": "tailwindcss -i ./resources/css/app.css -o ./public/css/app.css --watch"
+    "dev": "vite",
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,13 @@
   "homepage": "https://github.com/Dera2k/Artistack#readme",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "laravel-vite-plugin": "^2.0.0",
     "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "vite": "^7.1.1"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "axios": "^1.11.0"
   }
 }
