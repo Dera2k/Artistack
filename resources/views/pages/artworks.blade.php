@@ -41,14 +41,14 @@
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="text-red-500 hover:text-red-700 ml-3" title="Delete">
-                                        <i class="fas fa-trash"></i>
+                                        <x-heroicon-o-trash class="w-5 h-5" />
                                     </button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </a>
-            @endforeach    
+            @endforeach            
         </div>
         @endif
     </section>
