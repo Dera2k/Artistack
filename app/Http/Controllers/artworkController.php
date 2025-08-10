@@ -58,7 +58,7 @@ class ArtworkController extends Controller
      */
     public function edit(string $id)
     {
-        $artwork = Artwork::fineorFail($id);
+        $artwork = Artwork::findOrFail($id);
         return view('pages.edit', compact('artwork'));
     }
 
