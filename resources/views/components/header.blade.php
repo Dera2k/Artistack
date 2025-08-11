@@ -16,7 +16,7 @@
 
         @if(Route::currentRouteName() === 'artworks.index')
             <a href="{{ route('artworks.create') }}" 
-            class= "bg-blue-700 p-1 ml-4 text-white text-xl font-bold rounded-full hover:bg-- hover:bg-blue-400">Add art +</a>
+            class= "bg-blue-700 p-1 ml-4 text-white text-xl font-bold rounded-full hover:bg-- hover:bg-orange-400">Add art +</a>
         @endif
         
     </div>
