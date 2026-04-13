@@ -1,5 +1,4 @@
 <x-layout title="Artworks">
-
     <section class="mx-auto px-4 pt-2">
         <h1 class="text-2xl font-bold mb-6 text-center text-black">My Artworks</h1>
 
