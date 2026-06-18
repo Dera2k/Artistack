@@ -16,10 +16,11 @@
         <form action="{{ route('artworks.update', $artwork->id) }}" method="POST" 
             class="bg-white rounded-lg p-12 mt-9">
             @csrf
+            @method('PUT')
 
             <div class="mb-6">
                 <label for="title" class="block ">Title:</label>
-                <input type="text" name="title" value="{{ old('title') }}" placeholder="Title" required
+                <input type="text" name="title" value="{{ old('title', $artwork->title }}" placeholder="Title" required
                 class="w-full-border border-gray-800 rounded p-3 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm">
 
                 @error('title')
@@ -30,8 +31,7 @@
             <div>
                 <label for="description" class="block mb-2">Description</label>
                 <textarea name="description" rows="3" required 
-                class="w-full-border border-gray-500 rounded p-3 focus:outline-none focus:ring-2 resize-none">
-            {{ old('description') }}</textarea>
+                class="w-full-border border-gray-500 rounded p-3 focus:outline-none focus:ring-2 resize-none">{{ old('description', $artwork->description }}</textarea>
 
             @error('description')
                 <p class="text-red-500 text-sm">{{ $message }}</p>

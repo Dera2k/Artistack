@@ -19,7 +19,7 @@
             <div class="bg-white rounded-3xl overflow-hidden shadow-lg shadow-slate-200/50 border border-slate-100">
                 {{-- Image --}}
                 <div class="relative bg-slate-100">
-                    <img src="{{ asset('storage/' . $artwork->image) }}"
+                    <img src="{{ asset('storage/' . $artwork->image_path) }}"
                          alt="{{ $artwork->title }}"
                          class="w-full max-h-[70vh] object-contain">
                 </div>

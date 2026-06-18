@@ -43,7 +43,7 @@
 
                     {{-- Image container --}}
                     <a href="{{ route('artworks.show', $artwork) }}" class="block relative overflow-hidden aspect-[4/5]">
-                        <img src="{{ asset('storage/' . $artwork->image) }}"
+                        <img src="{{ asset('storage/' . $artwork->image_path) }}"
                              alt="{{ $artwork->title }}"
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         {{-- Hover overlay --}}
