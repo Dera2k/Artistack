@@ -67,7 +67,10 @@
                                 <a href="{{ route('artworks.edit', $artwork) }}"
                                    class="p-2 rounded-lg text-slate-400 hover:text-blue-700 hover:bg-blue-50 transition-colors"
                                    title="Edit">
-                                    <x-heroicon-o-pencil-square class="w-4 h-4" />
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 7.125L16.875 4.5" />
+                                    </svg>
                                 </a>
                                 <form action="{{ route('artworks.destroy', $artwork) }}" method="post">
                                     @csrf
@@ -75,7 +78,9 @@
                                     <button type="submit"
                                             class="p-2 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors"
                                             title="Delete">
-                                        <x-heroicon-o-trash class="w-4 h-4" />
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 7.5h12M9.75 7.5V6a1.5 1.5 0 011.5-1.5h1.5A1.5 1.5 0 0114.25 6v1.5M10.5 11.25v5.25M13.5 11.25v5.25M8.25 7.5l.75 12h6l.75-12" />
+                                        </svg>
                                     </button>
                                 </form>
                             </div>
