@@ -78,7 +78,7 @@ class ArtworkController extends Controller
             'description' => $request->input('description', $artwork->description),
         ]);
 
-        return redirect()->route('pages.show', $artwork->id)->with('success', 'Artwork updated successfully');
+        return redirect()->route('artworks.show', $artwork->id)->with('success', 'Artwork updated successfully');
 
 
     }
@@ -90,8 +90,8 @@ class ArtworkController extends Controller
     {
         $artwork = Artwork::findOrFail($id);
 
-        if($artwork->image_path && \Storage::disk('public')->exists($artwork->image_path)){
-            \Storage::disk('public')->delete($artwork->image_path);
+        if($artwork->image_path && Storage::disk('public')->exists($artwork->image_path)){
+            Storage::disk('public')->delete($artwork->image_path);
         }
 
         $artwork->delete();
