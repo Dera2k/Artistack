@@ -14,18 +14,41 @@
                class="text-sm font-medium {{ Route::currentRouteName() === 'home' ? 'text-[#1d4ed8]' : 'text-gray-500 hover:text-gray-900' }} transition-colors">
                 Home
             </a>
+
             <a href="{{ route('artworks.index') }}"
                class="text-sm font-medium {{ Route::currentRouteName() === 'artworks.index' ? 'text-[#1d4ed8]' : 'text-gray-500 hover:text-gray-900' }} transition-colors">
                 Artworks
             </a>
 
-            @if(Route::currentRouteName() === 'artworks.index')
-                <a href="{{ route('artworks.create') }}"
-                   class="inline-flex items-center gap-1 bg-[#f97316] text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-[#ea580c] transition-colors shadow-sm">
-                    Add art
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+            @auth
+                @if(Route::currentRouteName() === 'artworks.index')
+                    <a href="{{ route('artworks.create') }}"
+                       class="inline-flex items-center gap-1 bg-[#f97316] text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-[#ea580c] transition-colors shadow-sm">
+                        Add art
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                    </a>
+                @endif
+
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit"
+                            class="text-sm font-medium text-gray-500 hover:text-red-500 transition-colors">
+                        Logout
+                    </button>
+                </form>
+            @endauth
+
+            @guest
+                <a href="{{ route('login') }}"
+                   class="text-sm font-medium text-gray-500 hover:text-[#1d4ed8] transition-colors">
+                    Login
                 </a>
-            @endif
+
+                <a href="{{ route('register') }}"
+                   class="inline-flex items-center bg-[#1d4ed8] text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-[#1e3a8a] transition-colors shadow-sm">
+                    Register
+                </a>
+            @endguest
         </nav>
     </div>
 </header>

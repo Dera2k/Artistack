@@ -59,5 +59,13 @@
                 </button>
             </div>
         </form>
+
+        <div class="mt-6 text-center text-sm text-gray-500">
+            {{ __("Don't have an account?") }}
+            <a href="{{ route('register') }}"
+               class="font-medium text-[#1d4ed8] hover:text-[#1e3a8a] underline-offset-4 hover:underline transition-colors">
+                {{ __('Create one') }}
+            </a>
+        </div>
     </div>
 </x-guest-layout>
