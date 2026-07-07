@@ -6,22 +6,17 @@ use App\Http\Controllers\ArtworkController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::resource('artworks', ArtworkController::class);
+//public artwork routes
+Route::get('/artworks', [ArtworkController::class, 'index'])->name('artworks.index');
+Route::get('/artworks/{artwork}', [ArtworkController::class, 'show'])->name('artworks.show');
+
+//protected artwork routes (requires login + verified email)
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/artworks/create', [ArtworkController::class, 'create'])->name('artworks.create');
+    Route::post('/artworks', [ArtworkController::class, 'store'])->name('artworks.store');
+    Route::get('/artworks/{artwork}/edit', [ArtworkController::class, 'edit'])->name('artworks.edit');
+    Route::put('/artworks/{artwork}', [ArtworkController::class, 'update'])->name('artworks.update');
+    Route::delete('/artworks/{artwork}', [ArtworkController::class, 'destroy'])->name('artworks.destroy');
+});
 
 require __DIR__.'/auth.php';
-
-Route::get('/login', fn () => view('auth.login'))->name('login');
-Route::get('/register', fn () => view('auth.register'))->name('register');
-Route::get('/forgot-password', fn () => view('auth.forgot-password'))->name('password.request');
-
-Route::get('/reset-password/{token}', function ($token) {
-    return view('auth.reset-password', ['token' => $token]);
-})->name('password.reset');
-
-Route::get('/verify-email', fn () => view('auth.verify-email'))
-    ->middleware('auth')
-    ->name('verification.notice');
-
-Route::get('/confirm-password', fn () => view('auth.confirm-password'))
-    ->middleware('auth')
-    ->name('password.confirm');
