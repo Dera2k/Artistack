@@ -89,6 +89,8 @@
                 </div>
             @endforeach
         </div>
+            {{-- Pagination Links --}}
+            {{$artworks->links()}}
         @endif
     </div>
 </x-layout>

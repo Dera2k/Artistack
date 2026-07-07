@@ -13,7 +13,7 @@ class ArtworkController extends Controller
      */
     public function index()
     {   
-        $artworks = Artwork::latest()->paginate(6);
+        $artworks = Artwork::paginate(9);
         return view('pages.artworks')->with('artworks', $artworks);
     }
     /**
