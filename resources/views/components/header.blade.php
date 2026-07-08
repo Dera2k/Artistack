@@ -25,9 +25,17 @@
                     <a href="{{ route('artworks.create') }}"
                        class="inline-flex items-center gap-1 bg-[#f97316] text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-[#ea580c] transition-colors shadow-sm">
                         Add art
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                        </svg>
                     </a>
                 @endif
+
+                {{-- Profile link --}}
+                <a href="{{ route('profile.show') }}"
+                   class="text-sm font-medium {{ in_array(Route::currentRouteName(), ['profile.show', 'profile.edit', 'profile.edit-password']) ? 'text-[#1d4ed8]' : 'text-gray-500 hover:text-gray-900' }} transition-colors">
+                    Profile
+                </a>
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
