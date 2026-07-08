@@ -6,7 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Artwork extends Model
 {
-    // TO look in the right table
     protected $table = 'artworks';
-    protected $fillable = ['title','description','image_path'];
+    
+    protected $fillable = [
+        'user_id',
+        'title',
+        'description',
+        'image_path',
+    ];
+
+    /**
+     * Get the user that owns this artwork
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
