@@ -8,10 +8,31 @@ use Illuminate\Support\Facades\Storage;
 
 class ArtworkController extends Controller
 {
-    // Display all artworks
-    public function index()
+    // Display all artworks with search and filter
+    public function index(Request $request)
     {
-        $artworks = Artwork::paginate(9);
+        $query = Artwork::query();
+
+        // Search by title
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where('title', 'like', "%{$search}%");
+        }
+
+        // Filter by date (newest first or oldest first)
+        if ($request->filled('date_filter')) {
+            $dateFilter = $request->input('date_filter');
+            if ($dateFilter === 'newest') {
+                $query->orderBy('created_at', 'desc');
+            } elseif ($dateFilter === 'oldest') {
+                $query->orderBy('created_at', 'asc');
+            }
+        } else {
+            // Default: newest first
+            $query->orderBy('created_at', 'desc');
+        }
+
+        $artworks = $query->paginate(9)->withQueryString();
 
         return view('artworks.index', compact('artworks'));
     }
@@ -34,6 +55,7 @@ class ArtworkController extends Controller
         $path = $request->file('image')->store('artworks', 'public');
 
         Artwork::create([
+            'user_id' => auth()->id(),
             'image_path' => $path,
             'title' => $validated['title'],
             'description' => $validated['description'],
