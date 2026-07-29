@@ -2,99 +2,102 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Artwork;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ArtworkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Display all artworks
     public function index()
-    {   
+    {
         $artworks = Artwork::paginate(9);
-        return view('pages.artworks')->with('artworks', $artworks);
+
+        return view('artworks.index', compact('artworks'));
     }
-    /**
-     * Show the form for creating a new resource.
-     */
+
+    // Show artwork creation form
     public function create()
     {
-        return view("pages.create");
+        return view('artworks.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Store a new artwork
     public function store(Request $request)
     {
-        $validated_data = $request->validate([
-            'image' => 'required|image|max:2048',
-            'title' => 'required|string|max:255',
-            'description' => 'required|string|max:2000',
+        $validated = $request->validate([
+            'image' => ['required', 'image', 'max:2048'],
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:2000'],
         ]);
 
-        $path = $request ->file('image')->store("artworks", "public");
+        $path = $request->file('image')->store('artworks', 'public');
+
         Artwork::create([
-            "image_path" => $path,
-            "title" => $validated_data['title'],
-            "description" => $validated_data['description'],
-        ]);
-        return redirect()->route('artworks.index')->with('success', 'Artwork uploaded!');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $artwork = Artwork::findOrFail($id);
-        return view('pages.show', compact('artwork'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $artwork = Artwork::findOrFail($id);
-        return view('pages.edit', compact('artwork'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'title' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
+            'image_path' => $path,
+            'title' => $validated['title'],
+            'description' => $validated['description'],
         ]);
 
-        $artwork = Artwork::findorFail($id);
-        $artwork -> update([
-            'title' => $request->input('title', $artwork->title),
-            'description' => $request->input('description', $artwork->description),
-        ]);
-
-        return redirect()->route('artworks.show', $artwork->id)->with('success', 'Artwork updated successfully');
-
-
+        return redirect()
+            ->route('artworks.index')
+            ->with('success', 'Artwork uploaded successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    // Display a single artwork
+    public function show(Artwork $artwork)
     {
-        $artwork = Artwork::findOrFail($id);
+        return view('artworks.show', compact('artwork'));
+    }
 
-        if($artwork->image_path && Storage::disk('public')->exists($artwork->image_path)){
+    // Show artwork edit form
+    public function edit(Artwork $artwork)
+    {
+        return view('artworks.edit', compact('artwork'));
+    }
+
+    // Update an artwork
+    public function update(Request $request, Artwork $artwork)
+    {
+        $validated = $request->validate([
+            'title' => ['nullable', 'string', 'max:255'],
+            'description' => ['nullable', 'string', 'max:2000'],
+            'image' => ['nullable', 'image', 'max:2048'],
+        ]);
+
+        if ($request->hasFile('image')) {
+            if ($artwork->image_path && Storage::disk('public')->exists($artwork->image_path)) {
+                Storage::disk('public')->delete($artwork->image_path);
+            }
+
+            $validated['image_path'] = $request
+                ->file('image')
+                ->store('artworks', 'public');
+        }
+
+        unset($validated['image']);
+
+        $artwork->update($validated);
+
+        return redirect()
+            ->route('artworks.show', $artwork)
+            ->with('success', 'Artwork updated successfully.');
+    }
+
+    // Delete an artwork
+    public function destroy(Artwork $artwork)
+    {
+        if (
+            $artwork->image_path &&
+            Storage::disk('public')->exists($artwork->image_path)
+        ) {
             Storage::disk('public')->delete($artwork->image_path);
         }
 
         $artwork->delete();
-        return redirect()->back()->with('success', 'Artwork deleted successfully');
+
+        return redirect()
+            ->route('artworks.index')
+            ->with('success', 'Artwork deleted successfully.');
     }
 }
