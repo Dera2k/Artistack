@@ -28,6 +28,12 @@ COPY --from=frontend /app/public/build ./public/build
 
 ENV WEB_DOCUMENT_ROOT=/app/public
 
-RUN chown -R application:application storage bootstrap/cache
+# Ensure Laravel runtime directories exist
+RUN mkdir -p \
+    storage/framework/cache/data \
+    storage/framework/sessions \
+    storage/framework/views \
+    bootstrap/cache && \
+    chown -R application:application storage bootstrap/cache
 
 EXPOSE 8080
