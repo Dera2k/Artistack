@@ -11,7 +11,6 @@ return new class extends Migration
         Schema::table('artworks', function (Blueprint $table) {
             // Add nullable user_id first, then we'll backfill
             $table->foreignId('user_id')
-                ->nullable()
                 ->constrained('users')
                 ->onDelete('cascade');
         });

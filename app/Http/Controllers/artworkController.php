@@ -75,12 +75,20 @@ class ArtworkController extends Controller
     // Show artwork edit form
     public function edit(Artwork $artwork)
     {
+        if ($artwork->user_id !== auth()->id()) {
+            abort(403);
+        }
+
         return view('artworks.edit', compact('artwork'));
     }
 
     // Update an artwork
     public function update(Request $request, Artwork $artwork)
     {
+        if ($artwork->user_id !== auth()->id()) {
+            abort(403);
+        }
+
         $validated = $request->validate([
             'title' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:2000'],
@@ -109,6 +117,10 @@ class ArtworkController extends Controller
     // Delete an artwork
     public function destroy(Artwork $artwork)
     {
+        if ($artwork->user_id !== auth()->id()) {
+            abort(403);
+        }
+
         if (
             $artwork->image_path &&
             Storage::disk('public')->exists($artwork->image_path)

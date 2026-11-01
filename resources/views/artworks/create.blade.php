@@ -1,6 +1,6 @@
 <x-layout title="Upload Artwork">
     <div class="flex-col items-center justify-center min-h-screen">
-        <h1 class="text-2xl font-bold text-center text-transform: uppercase">Upload Artwork</h1>
+        <h1 class="text-2xl font-bold text-center uppercase">Upload Artwork</h1>
 
 
         @if($errors->any())
@@ -30,7 +30,7 @@
                 @enderror
             </div>
 
-            <div mb-6>
+            <div class="mb-6">
                 <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Art Title:</label>
                 <input type="text" name="title" value="{{  old('title') }}" placeholder="Title" required
                 class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm">

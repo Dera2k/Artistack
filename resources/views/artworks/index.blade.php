@@ -100,7 +100,7 @@
                 <div class="group bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
 
                     <a href="{{ route('artworks.show', $artwork) }}" class="block relative overflow-hidden aspect-[4/3] bg-slate-100">
-                        <img src="{{ asset('storage/' . $artwork->image) }}"
+                        <img src="{{ asset('storage/' . $artwork->image_path) }}"
                              alt="{{ $artwork->title }}"
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

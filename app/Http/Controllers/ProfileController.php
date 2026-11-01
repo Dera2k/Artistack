@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 
 class ProfileController extends Controller
@@ -93,6 +94,13 @@ class ProfileController extends Controller
             return back()->withErrors([
                 'password' => 'Password is incorrect.',
             ]);
+        }
+
+        // Delete user's artwork images
+        foreach ($user->artworks as $artwork) {
+            if ($artwork->image_path && Storage::disk('public')->exists($artwork->image_path)) {
+                Storage::disk('public')->delete($artwork->image_path);
+            }
         }
 
         // Delete user's artworks
