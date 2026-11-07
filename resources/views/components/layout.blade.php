@@ -28,6 +28,7 @@
     <body class="min-h-screen flex flex-col bg-white text-gray-900">
         <x-header />
         <main class="flex-1">
+            <x-flash />
             {{ $slot }}
         </main>
         <x-footer />

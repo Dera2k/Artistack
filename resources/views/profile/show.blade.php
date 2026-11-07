@@ -13,13 +13,6 @@
                 Back to gallery
             </a>
 
-            {{-- Flash messages --}}
-            @if (session('success'))
-                <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 text-sm font-medium">
-                    {{ session('success') }}
-                </div>
-            @endif
-
             {{-- Profile card --}}
             <div class="bg-white rounded-2xl shadow-lg border border-slate-100 p-8">
                 <div class="flex items-center gap-3 mb-6">

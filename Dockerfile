@@ -36,4 +36,8 @@ RUN mkdir -p \
     bootstrap/cache && \
     chown -R application:application storage bootstrap/cache
 
+# Entrypoint script: runs artisan setup before nginx/php-fpm starts
+COPY docker-entrypoint.sh /opt/docker/bin/entrypoint.d/20-artisan.sh
+RUN chmod +x /opt/docker/bin/entrypoint.d/20-artisan.sh
+
 EXPOSE 8080

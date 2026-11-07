@@ -32,6 +32,11 @@ class ArtworkController extends Controller
             $query->orderBy('created_at', 'desc');
         }
 
+        // Filter to my artworks (authenticated user only)
+        if ($request->filled('my') && auth()->check()) {
+            $query->where('user_id', auth()->id());
+        }
+
         $artworks = $query->paginate(9)->withQueryString();
 
         return view('artworks.index', compact('artworks'));
