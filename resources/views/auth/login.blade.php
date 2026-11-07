@@ -73,10 +73,7 @@
                 <form method="POST" action="{{ route('demo.login') }}">
                     @csrf
                     <button type="submit"
-                            class="w-full group relative inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#f97316] via-[#1d4ed8] to-[#f97316] text-white font-semibold px-6 py-3 rounded-full hover:scale-105 hover:shadow-xl hover:shadow-orange-400/30 transition-all duration-300 border-2 border-transparent hover:border-[#fff7ed]/50">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M2 12c0-4.714 2.796-8.798 6.858-9.992C10.364 1.539 11.864 1 12 1s1.636.539 2.142 1.008c4.061 1.194 6.858 5.277 6.858 9.992C22 17.552 19.552 20 17 20s-5-2.448-5-5.001C7 15.448 4.552 18 2 18s-5-2.448-5-5zM12 2a10 10 0 00-4.782 11.495c-.478-.28-1-.32-1.218-.09a10 10 0 00-3.992 2.162c-.475.274-.541.82-.153 1.247c.388.427 1.153.429 1.539 0c.19-.21.237-.772.153-1.247a10 10 0 003.992-2.162c.219-.23.74-.19 1.218.09A10 10 0 0012 2z"/>
-                        </svg>
+                            class="w-full group inline-flex items-center justify-center gap-2 bg-[#f97316] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#ea580c] hover:shadow-lg hover:shadow-orange-400/40 transition-all duration-300 border-2 border-transparent hover:border-[#fff7ed]/50">
                         Try Demo Account
                     </button>
                 </form>
