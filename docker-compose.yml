@@ -4,13 +4,12 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8080:80"
     volumes:
       - artistack_storage:/app/storage
     environment:
       APP_NAME: "Artistack"
       APP_ENV: production
-      APP_KEY: ""
       APP_DEBUG: "false"
       APP_URL: http://localhost:8080
       APP_TIMEZONE: UTC
