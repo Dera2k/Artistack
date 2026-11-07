@@ -6,12 +6,36 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 //guest routes (show forms and handle submissions)
 Route::middleware('guest')->group(function () {
     Route::get('/login', fn () => view('auth.login'))->name('login');
     Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+
+    // Demo account login (local development only)
+    Route::post('/demo-login', function () {
+        if (app()->environment() !== 'local') {
+            abort(403);
+        }
+
+        $user = User::firstOrCreate(
+            ['email' => 'demo@artistack.com'],
+            [
+                'name' => 'Demo Artist',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ]
+        );
+
+        Auth::login($user);
+        request()->session()->regenerate();
+
+        return redirect()->route('artworks.index');
+    })->name('demo.login');
 
     Route::get('/register', fn () => view('auth.register'))->name('register');
     Route::post('/register', [RegisteredUserController::class, 'store']);
